@@ -2520,27 +2520,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7696294360899019185, guid: 5e9642f40619e8947832a80784953b67, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1371186821}
-    - targetCorrespondingSourceObject: {fileID: 7696294360899019185, guid: 5e9642f40619e8947832a80784953b67, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1371186820}
   m_SourcePrefab: {fileID: 100100000, guid: 5e9642f40619e8947832a80784953b67, type: 3}
 --- !u!1 &1371186819 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7696294360899019185, guid: 5e9642f40619e8947832a80784953b67, type: 3}
   m_PrefabInstance: {fileID: 1371186818}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1371186820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371186819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22143910f8f638b4f89467a9ca180971, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1371186821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3495,7 +3480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbc5bb42fb38344eb38e7d63fb4bc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sonidoImpacto: {fileID: 8300000, guid: bd8857660a16ba549b8cc522d93d9117, type: 3}
+  sonidoImpacto: {fileID: 8300000, guid: 07e706591f37d9a40b8837315ab8891b, type: 3}
 --- !u!82 &2061520109
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3506,7 +3491,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bd8857660a16ba549b8cc522d93d9117, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 07e706591f37d9a40b8837315ab8891b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3604,7 +3589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e34caecd6effb4fa6244b307e3f8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 1371186819}
   projectileSpeed: 10
   shootKey: 32
   shootCooldown: 0.2
