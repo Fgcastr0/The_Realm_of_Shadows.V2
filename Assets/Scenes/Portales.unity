@@ -616,7 +616,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6866e6fb38599564ea7d527156871ed8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 60e056e769cedb04b8dc426174b2d7d7, type: 3}
   m_Color: {r: 1, g: 0, b: 0.9504018, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -703,7 +703,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6866e6fb38599564ea7d527156871ed8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 60e056e769cedb04b8dc426174b2d7d7, type: 3}
   m_Color: {r: 0.045033824, g: 0.7668391, b: 0.8679245, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1568,7 +1568,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 48ce3ce2c5e412445bd86530dca9b529, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 676a7f76e972d114ba560fd58fea750e, type: 3}
   m_Color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2312,7 +2312,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7bff7cc076ba5224fa42fb157a96906d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 735ae5800b1a7844583208660cb5e60b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2937,7 +2937,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6866e6fb38599564ea7d527156871ed8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 60e056e769cedb04b8dc426174b2d7d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3184,7 +3184,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300004, guid: 0be5c610b844cff43bbeae2aea7cf43b, type: 3}
+  m_Sprite: {fileID: 21300004, guid: 1abac4e7bfe98a44582e9e1d7e9a7093, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3224,10 +3224,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  Arriba: {fileID: 21300000, guid: 0be5c610b844cff43bbeae2aea7cf43b, type: 3}
-  Abajo: {fileID: 21300002, guid: 0be5c610b844cff43bbeae2aea7cf43b, type: 3}
-  Derecha: {fileID: 21300004, guid: 0be5c610b844cff43bbeae2aea7cf43b, type: 3}
-  Izquierda: {fileID: 21300006, guid: 0be5c610b844cff43bbeae2aea7cf43b, type: 3}
+  Arriba: {fileID: 21300000, guid: 1abac4e7bfe98a44582e9e1d7e9a7093, type: 3}
+  Abajo: {fileID: 21300002, guid: 1abac4e7bfe98a44582e9e1d7e9a7093, type: 3}
+  Derecha: {fileID: 21300004, guid: 1abac4e7bfe98a44582e9e1d7e9a7093, type: 3}
+  Izquierda: {fileID: 21300006, guid: 1abac4e7bfe98a44582e9e1d7e9a7093, type: 3}
 --- !u!114 &2061520107
 MonoBehaviour:
   m_ObjectHideFlags: 0
