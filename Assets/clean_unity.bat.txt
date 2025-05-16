@@ -1,0 +1,8 @@
+@echo off
+echo Limpiando carpetas de Unity...
+rmdir /s /q Library
+rmdir /s /q Temp
+rmdir /s /q Obj
+rmdir /s /q Logs
+echo Carpetas eliminadas. Abri Unity y se regenerará todo!
+pause
