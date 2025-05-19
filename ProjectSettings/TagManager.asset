@@ -13,6 +13,7 @@ TagManager:
   - Varita Oscuridad
   - Final
   - Enemy
+  - Sound
   layers:
   - Default
   - TransparentFX

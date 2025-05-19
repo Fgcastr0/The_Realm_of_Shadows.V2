@@ -4,16 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class MagoColision : MonoBehaviour
 {
-    public AudioClip sonidoImpacto;   // Sonido a reproducir al colisionar
-    private AudioSource audioSource;  // Referencia al componente AudioSource
+    SoundManager soundManager;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            Debug.LogError("Falta el componente AudioSource en este GameObject.");
-        }
+        soundManager = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundManager>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -21,7 +16,7 @@ public class MagoColision : MonoBehaviour
         // Si colisiona con un enemigo y este objeto tiene el tag "Player"
         if (collision.gameObject.CompareTag("Enemy") && gameObject.CompareTag("Player"))
         {
-            if (sonidoImpacto != null && audioSource != null)
+            if (soundManager.fail != null)
             {
                 StartCoroutine(CargarPortalesConSonido());
             }
@@ -35,13 +30,16 @@ public class MagoColision : MonoBehaviour
 
     IEnumerator CargarPortalesConSonido()
     {
-        audioSource.PlayOneShot(sonidoImpacto);
-        yield return new WaitForSeconds(sonidoImpacto.length);
+        soundManager.PlaySFX(soundManager.fail);
+        yield return new WaitForSeconds(soundManager.fail.length);
         CargarEscenaPortales();
     }
 
     void CargarEscenaPortales()
     {
+        soundManager.StopMusic();
+        soundManager.PlayMusic(soundManager.musicPortales);
+
         SceneManager.LoadScene("Portales");
     }
 }
