@@ -653,6 +653,50 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &298936655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 298936657}
+  - component: {fileID: 298936656}
+  m_Layer: 0
+  m_Name: WeaponManager
+  m_TagString: WeaponManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &298936656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298936655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8ffba0514b1e049b4656bedc303122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &298936657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298936655}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.016071, y: 5.5410886, z: -0.041144587}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &308288568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,9 +2379,12 @@ MonoBehaviour:
   musicHielo: {fileID: 8300000, guid: 04f6696c0b984a147918aeac5fa173bd, type: 3}
   musicFuego: {fileID: 8300000, guid: 83f7b783524133b419eff0233e9dd7b1, type: 3}
   bckgrd: {fileID: 0}
-  fail: {fileID: 0}
+  fail: {fileID: 8300000, guid: 79ef59d381e68a8449d0ae17f491737e, type: 3}
   walk: {fileID: 8300000, guid: 27eafab12375a634ca2b36ab2fba3bb3, type: 3}
   miau: {fileID: 8300000, guid: 0a77dd1a538c675489e9a7349551fbdd, type: 3}
+  fireShot: {fileID: 8300000, guid: ecc8fc8c588a22844bca5957e891d4f8, type: 3}
+  iceShot: {fileID: 8300000, guid: aab24dbb379d9814ebe56bded479ba21, type: 3}
+  darkShot: {fileID: 8300000, guid: de3d73a1d8518a540a240daa3a37e999, type: 3}
 --- !u!4 &1244896064
 Transform:
   m_ObjectHideFlags: 0
@@ -3928,3 +3975,4 @@ SceneRoots:
   - {fileID: 1244896064}
   - {fileID: 2089039089}
   - {fileID: 1566925690}
+  - {fileID: 298936657}

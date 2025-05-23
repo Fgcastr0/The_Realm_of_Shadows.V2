@@ -25,6 +25,11 @@ public class SoundManager : MonoBehaviour
     public AudioClip walk;
     public AudioClip miau;
 
+    // shots weapons
+    public AudioClip fireShot;
+    public AudioClip iceShot;
+    public AudioClip darkShot;
+
 
     void Awake()
     {

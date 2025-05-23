@@ -6,10 +6,10 @@ public class MagoColision : MonoBehaviour
 {
     SoundManager soundManager;
 
-   /* void Start()
+    void Start()
     {
         soundManager = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundManager>();
-    }*/
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
