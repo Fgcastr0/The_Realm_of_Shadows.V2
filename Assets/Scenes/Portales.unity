@@ -1794,7 +1794,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300004, guid: c98b9cd543d1a6d448e27babb81798a0, type: 3}
+  m_Sprite: {fileID: 21300004, guid: 40fabae558b8ef448bc99eb0953d7b6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1818,10 +1818,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  Arriba: {fileID: 21300000, guid: c98b9cd543d1a6d448e27babb81798a0, type: 3}
-  Abajo: {fileID: 21300002, guid: c98b9cd543d1a6d448e27babb81798a0, type: 3}
-  Derecha: {fileID: 21300004, guid: c98b9cd543d1a6d448e27babb81798a0, type: 3}
-  Izquierda: {fileID: 21300006, guid: c98b9cd543d1a6d448e27babb81798a0, type: 3}
+  Arriba: {fileID: 21300000, guid: 40fabae558b8ef448bc99eb0953d7b6c, type: 3}
+  Abajo: {fileID: 21300002, guid: 40fabae558b8ef448bc99eb0953d7b6c, type: 3}
+  Derecha: {fileID: 21300004, guid: 40fabae558b8ef448bc99eb0953d7b6c, type: 3}
+  Izquierda: {fileID: 21300006, guid: 40fabae558b8ef448bc99eb0953d7b6c, type: 3}
 --- !u!114 &944123043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2322,7 +2322,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244896062}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b63ccb033dc31864384737df0af9eefe, type: 3}
   m_Name: 
@@ -2337,6 +2337,7 @@ MonoBehaviour:
   bckgrd: {fileID: 0}
   fail: {fileID: 0}
   walk: {fileID: 8300000, guid: 27eafab12375a634ca2b36ab2fba3bb3, type: 3}
+  miau: {fileID: 8300000, guid: 0a77dd1a538c675489e9a7349551fbdd, type: 3}
 --- !u!4 &1244896064
 Transform:
   m_ObjectHideFlags: 0
@@ -3482,6 +3483,7 @@ MonoBehaviour:
   personaje: {fileID: 944123045}
   velocidad: 2
   distanciaMinima: 1
+  tiempoEntreAcciones: 15
 --- !u!95 &1853813276
 Animator:
   serializedVersion: 5

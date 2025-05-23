@@ -23,6 +23,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip bckgrd;
     public AudioClip fail;
     public AudioClip walk;
+    public AudioClip miau;
 
 
     void Awake()
