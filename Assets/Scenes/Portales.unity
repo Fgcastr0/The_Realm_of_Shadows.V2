@@ -2669,7 +2669,7 @@ MonoBehaviour:
   walk: {fileID: 8300000, guid: 27eafab12375a634ca2b36ab2fba3bb3, type: 3}
   miau: {fileID: 8300000, guid: 0a77dd1a538c675489e9a7349551fbdd, type: 3}
   fireShot: {fileID: 8300000, guid: ecc8fc8c588a22844bca5957e891d4f8, type: 3}
-  iceShot: {fileID: 8300000, guid: aab24dbb379d9814ebe56bded479ba21, type: 3}
+  iceShot: {fileID: 8300000, guid: 6ca4cfe3b651fb74fb8a3f9b38e1a146, type: 3}
   darkShot: {fileID: 8300000, guid: de3d73a1d8518a540a240daa3a37e999, type: 3}
 --- !u!4 &1244896064
 Transform:
