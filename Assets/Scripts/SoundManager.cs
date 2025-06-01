@@ -24,6 +24,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip fail;
     public AudioClip walk;
     public AudioClip miau;
+    public AudioClip gameOver;
 
     // shots weapons
     public AudioClip fireShot;

@@ -2049,7 +2049,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300004, guid: c98b9cd543d1a6d448e27babb81798a0, type: 3}
+  m_Sprite: {fileID: 21300004, guid: 40fabae558b8ef448bc99eb0953d7b6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2073,10 +2073,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  Arriba: {fileID: 21300000, guid: c98b9cd543d1a6d448e27babb81798a0, type: 3}
-  Abajo: {fileID: 21300002, guid: c98b9cd543d1a6d448e27babb81798a0, type: 3}
-  Derecha: {fileID: 21300004, guid: c98b9cd543d1a6d448e27babb81798a0, type: 3}
-  Izquierda: {fileID: 21300006, guid: c98b9cd543d1a6d448e27babb81798a0, type: 3}
+  Arriba: {fileID: 21300000, guid: 40fabae558b8ef448bc99eb0953d7b6c, type: 3}
+  Abajo: {fileID: 21300002, guid: 40fabae558b8ef448bc99eb0953d7b6c, type: 3}
+  Derecha: {fileID: 21300004, guid: 40fabae558b8ef448bc99eb0953d7b6c, type: 3}
+  Izquierda: {fileID: 21300006, guid: 40fabae558b8ef448bc99eb0953d7b6c, type: 3}
 --- !u!114 &944123043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2089,6 +2089,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbc5bb42fb38344eb38e7d63fb4bc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vidaInicial: 3
+  maximaVida: {fileID: 1701716484, guid: 648fd4663c20eb840afb8dce4fe99506, type: 3}
+  mediaVida: {fileID: 383020960, guid: 648fd4663c20eb840afb8dce4fe99506, type: 3}
+  pocaVida: {fileID: 713509277, guid: 648fd4663c20eb840afb8dce4fe99506, type: 3}
+  sinVida: {fileID: -607175373, guid: 648fd4663c20eb840afb8dce4fe99506, type: 3}
 --- !u!114 &944123044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2668,6 +2673,7 @@ MonoBehaviour:
   fail: {fileID: 8300000, guid: 79ef59d381e68a8449d0ae17f491737e, type: 3}
   walk: {fileID: 8300000, guid: 27eafab12375a634ca2b36ab2fba3bb3, type: 3}
   miau: {fileID: 8300000, guid: 0a77dd1a538c675489e9a7349551fbdd, type: 3}
+  gameOver: {fileID: 8300000, guid: 0d0472792e773a84bbccc49357d5231a, type: 3}
   fireShot: {fileID: 8300000, guid: ecc8fc8c588a22844bca5957e891d4f8, type: 3}
   iceShot: {fileID: 8300000, guid: 6ca4cfe3b651fb74fb8a3f9b38e1a146, type: 3}
   darkShot: {fileID: 8300000, guid: de3d73a1d8518a540a240daa3a37e999, type: 3}

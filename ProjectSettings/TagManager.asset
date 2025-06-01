@@ -15,6 +15,7 @@ TagManager:
   - Enemy
   - Sound
   - WeaponManager
+  - ImagenVida
   layers:
   - Default
   - TransparentFX
