@@ -13,6 +13,13 @@ public class WeaponManager : MonoBehaviour
     private int positionCurrentWeapon;
     private int positionNextWeapon;
 
+    [SerializeField] private Sprite fuego;
+    [SerializeField] private Sprite hielo;
+    [SerializeField] private Sprite oscuridad;
+    public GameObject projectilePrefab; // Cambié el nombre a 'projectilePrefab' para ser más claro que es un prefab
+    [SerializeField] private SpriteRenderer projectileSpriteRenderer; // Referencia al SpriteRenderer si está en el mismo prefab
+
+
     private List<string> weapons = new List<string> { "fire", "ice", "dark" };
 
     void Awake()
@@ -31,6 +38,7 @@ public class WeaponManager : MonoBehaviour
     void Start()
     {
         soundManager = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundManager>();
+        projectileSpriteRenderer = projectilePrefab.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -43,6 +51,22 @@ public class WeaponManager : MonoBehaviour
         positionCurrentWeapon = weapons.IndexOf(weaponInUse);
         positionNextWeapon = (positionCurrentWeapon + 1) % weapons.Count;
         weaponInUse = weapons[positionNextWeapon];
+
+        if (projectileSpriteRenderer)
+        {
+            switch (weaponInUse)
+            {
+                case "fire":
+                    projectileSpriteRenderer.sprite = fuego;
+                    break;
+                case "ice":
+                    projectileSpriteRenderer.sprite = hielo;
+                    break;
+                case "dark":
+                    projectileSpriteRenderer.sprite = oscuridad;
+                    break;
+            }
+        }
     }
 
     public void ShotSound()

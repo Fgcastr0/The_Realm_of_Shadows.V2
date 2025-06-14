@@ -16,6 +16,7 @@ TagManager:
   - Sound
   - WeaponManager
   - ImagenVida
+  - manaParticulas
   layers:
   - Default
   - TransparentFX

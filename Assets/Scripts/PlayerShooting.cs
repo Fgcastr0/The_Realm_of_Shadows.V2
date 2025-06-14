@@ -6,7 +6,6 @@ public class PlayerShooting : MonoBehaviour
     WeaponManager weaponManager;
 
     [Header("Disparo")]
-    [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private KeyCode shootKey = KeyCode.Space;
     [SerializeField] private KeyCode changeWeaponKey = KeyCode.L;
@@ -43,21 +42,18 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        if (projectilePrefab == null || playerMovement == null) return;
+        if (weaponManager.projectilePrefab == null || playerMovement == null) return;
 
         Vector2 shootDirection = playerMovement.LastDirection.normalized;
         Vector3 spawnPosition = transform.position + (Vector3)(shootDirection * 0.5f);
 
         weaponManager.ShotSound();
-        GameObject projectile = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
+        GameObject projectile = Instantiate(weaponManager.projectilePrefab, spawnPosition, Quaternion.identity);
 
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.velocity = shootDirection * projectileSpeed;
         }
-
-        // Debug opcional
-        // Debug.Log("Proyectiles activos: " + GameObject.FindGameObjectsWithTag("Projectile").Length);
     }
 }
