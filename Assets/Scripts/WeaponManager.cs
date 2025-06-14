@@ -13,12 +13,13 @@ public class WeaponManager : MonoBehaviour
     private int positionCurrentWeapon;
     private int positionNextWeapon;
 
-    [SerializeField] private Sprite fuego;
-    [SerializeField] private Sprite hielo;
-    [SerializeField] private Sprite oscuridad;
-    public GameObject projectilePrefab; // Cambié el nombre a 'projectilePrefab' para ser más claro que es un prefab
-    [SerializeField] private SpriteRenderer projectileSpriteRenderer; // Referencia al SpriteRenderer si está en el mismo prefab
+    [Header("Prefabs de proyectiles")]
+    public GameObject firePrefab;
+    public GameObject icePrefab;
+    public GameObject darkPrefab;
 
+    // Prefab actualmente seleccionado
+    private GameObject currentProjectilePrefab;
 
     private List<string> weapons = new List<string> { "fire", "ice", "dark" };
 
@@ -34,16 +35,11 @@ public class WeaponManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         soundManager = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundManager>();
-        projectileSpriteRenderer = projectilePrefab.GetComponent<SpriteRenderer>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        UpdateCurrentProjectile(); // Establece el primer prefab
     }
 
     public void ChangeWeapon()
@@ -52,21 +48,28 @@ public class WeaponManager : MonoBehaviour
         positionNextWeapon = (positionCurrentWeapon + 1) % weapons.Count;
         weaponInUse = weapons[positionNextWeapon];
 
-        if (projectileSpriteRenderer)
+        UpdateCurrentProjectile(); // Actualiza el prefab a usar
+    }
+
+    private void UpdateCurrentProjectile()
+    {
+        switch (weaponInUse)
         {
-            switch (weaponInUse)
-            {
-                case "fire":
-                    projectileSpriteRenderer.sprite = fuego;
-                    break;
-                case "ice":
-                    projectileSpriteRenderer.sprite = hielo;
-                    break;
-                case "dark":
-                    projectileSpriteRenderer.sprite = oscuridad;
-                    break;
-            }
+            case "fire":
+                currentProjectilePrefab = firePrefab;
+                break;
+            case "ice":
+                currentProjectilePrefab = icePrefab;
+                break;
+            case "dark":
+                currentProjectilePrefab = darkPrefab;
+                break;
         }
+    }
+
+    public GameObject GetCurrentProjectilePrefab()
+    {
+        return currentProjectilePrefab;
     }
 
     public void ShotSound()

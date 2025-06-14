@@ -4,6 +4,7 @@ public class PlayerShooting : MonoBehaviour
 {
     SoundManager soundManager;
     WeaponManager weaponManager;
+    PlayerStats playerStats;
 
     [Header("Disparo")]
     [SerializeField] private float projectileSpeed = 10f;
@@ -19,6 +20,7 @@ public class PlayerShooting : MonoBehaviour
         playerMovement = GetComponent<PlayerMovementTD>();
         soundManager = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundManager>();
         weaponManager = GameObject.FindGameObjectWithTag("WeaponManager").GetComponent<WeaponManager>();
+        playerStats = GetComponent<PlayerStats>();
 
         if (playerMovement == null)
         {
@@ -30,7 +32,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetKeyDown(changeWeaponKey))
         {
-            WeaponManager.instance.ChangeWeapon();
+            weaponManager.ChangeWeapon();
         }
 
         if (Input.GetKeyDown(shootKey) && Time.time >= lastShotTime + shootCooldown)
@@ -42,13 +44,22 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        if (weaponManager.projectilePrefab == null || playerMovement == null) return;
+        // Verifica maná suficiente
+        if (playerStats == null || !playerStats.ConsumirMana()) return;
+
+        GameObject currentPrefab = weaponManager.GetCurrentProjectilePrefab();
+        if (currentPrefab == null || playerMovement == null) return;
 
         Vector2 shootDirection = playerMovement.LastDirection.normalized;
         Vector3 spawnPosition = transform.position + (Vector3)(shootDirection * 0.5f);
 
-        weaponManager.ShotSound();
-        GameObject projectile = Instantiate(weaponManager.projectilePrefab, spawnPosition, Quaternion.identity);
+        weaponManager.ShotSound();  // Reproduce sonido del arma actual
+
+        // Calcula rotación para mirar en dirección del disparo
+        float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+        GameObject projectile = Instantiate(currentPrefab, spawnPosition, rotation);
 
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         if (rb != null)
