@@ -16,7 +16,7 @@ public class ChangeSceneTrigger : MonoBehaviour
             soundManager.StopMusic();
             soundManager.PlayMusic(soundManager.musicHielo);
 
-            SceneManager.LoadScene("TorreHielo");
+            SceneManager.LoadScene("CargaHielo");
         }
     }
 }

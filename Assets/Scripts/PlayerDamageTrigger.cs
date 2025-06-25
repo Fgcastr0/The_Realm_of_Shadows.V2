@@ -17,7 +17,8 @@ public class PlayerDamageTrigger : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            playerStats?.RecibirDaño();
+            Vector2 direccionEmpujon = (transform.position - other.transform.position).normalized;
+            playerStats.RecibirDaño(direccionEmpujon);
         }
     }
 }

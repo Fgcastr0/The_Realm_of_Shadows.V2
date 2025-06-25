@@ -16,7 +16,7 @@ public class ChangeSceneTrigger3 : MonoBehaviour
             soundManager.StopMusic();
             soundManager.PlayMusic(soundManager.musicOscuridad);
 
-            SceneManager.LoadScene("TorreOscuridad");
+            SceneManager.LoadScene("CargaOscuridad");
         }
     }
 }

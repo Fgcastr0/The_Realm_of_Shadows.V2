@@ -16,7 +16,7 @@ public class ChangeSceneTrigger1 : MonoBehaviour
             soundManager.StopMusic();
             soundManager.PlayMusic(soundManager.musicFuego);
 
-            SceneManager.LoadScene("TorreFuego");
+            SceneManager.LoadScene("CargaFuego");
         }
     }
 }

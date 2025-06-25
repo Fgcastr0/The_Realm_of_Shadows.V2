@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 22ea6fe0c0def89439ce0698994744bd
   - enabled: 1
-    path: Assets/Scenes/MenuInicio.unity
-    guid: 92b7dd443439ae44986ac7afee4a60cc
-  - enabled: 1
     path: Assets/Scenes/MenuPrincipal.unity
     guid: 4e02f5f099f745f4aa3d90ab2316ed45
+  - enabled: 1
+    path: Assets/Scenes/MenuInicio.unity
+    guid: 92b7dd443439ae44986ac7afee4a60cc
   - enabled: 1
     path: Assets/Scenes/Portales.unity
     guid: 469b9a7c8e9049141836f8eb83d5ce43
@@ -26,4 +26,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TorreOscuridad.unity
     guid: f656c048d0008e34580a639f347b5e76
+  - enabled: 1
+    path: Assets/Scenes/GameOverOscuridad.unity
+    guid: 85a8e8e70b5a949409e9914b67c49598
+  - enabled: 1
+    path: Assets/Scenes/GameOverHielo.unity
+    guid: 4c50571b648396c42b7897e7beaad6c8
+  - enabled: 1
+    path: Assets/Scenes/GameOverFuego.unity
+    guid: f20d3340c1b6c8749946bbf0ff6fd721
+  - enabled: 1
+    path: Assets/Scenes/CargaOscuridad.unity
+    guid: 672b9e03387f7524c8968a2b4033b2df
+  - enabled: 1
+    path: Assets/Scenes/CargaFuego.unity
+    guid: 63ea8211e585db641a1ac4a23468e568
+  - enabled: 1
+    path: Assets/Scenes/CargaHielo.unity
+    guid: 982859c402cd7584e84bff1014af2390
   m_configObjects: {}

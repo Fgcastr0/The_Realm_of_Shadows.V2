@@ -1,139 +1,156 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
     [Header("Vida")]
     public int vidaMaxima = 4;
     public int vidaActual;
-
     [SerializeField] private Slider barraVida;
 
-    [Header("Mana")]
+    [Header("Maná")]
     public int manaMaximo = 5;
     public int manaActual;
-
     [SerializeField] private Slider barraMana;
 
-    [SerializeField] private KeyCode regenerarManaKey = KeyCode.M;
-    [SerializeField] private float velocidadRecuperacionMana = 1f; // segundos por punto de mana
+    [Header("Empujón")]
+    public float fuerzaEmpujon = 12f;
+
+    [Header("Invencibilidad")]
+    public float tiempoInvencibilidad = 1.0f;
+    private bool puedeRecibirDaño = true;
 
     private SoundManager soundManager;
-    private bool regenerandoMana = false;
+    private Rigidbody2D rb;
+
+    private float manaRechargeInterval = 0.5f;
+    private float manaRechargeTimer = 0f;
+
+    private bool isStunned = false;
 
     void Start()
     {
         soundManager = GameObject.FindGameObjectWithTag("Sound")?.GetComponent<SoundManager>();
+        rb = GetComponent<Rigidbody2D>();
 
         vidaActual = vidaMaxima;
         manaActual = manaMaximo;
 
-        if (barraVida != null)
-        {
-            barraVida.maxValue = vidaMaxima;
-            barraVida.value = vidaActual;
-        }
-        else
-        {
-            Debug.LogWarning("No asignaste el Slider de vida en PlayerStats");
-        }
-
-        if (barraMana != null)
-        {
-            barraMana.maxValue = manaMaximo;
-            barraMana.value = manaActual;
-        }
-        else
-        {
-            Debug.LogWarning("No asignaste el Slider de mana en PlayerStats");
-        }
+        ActualizarBarraVida();
+        ActualizarBarraMana();
     }
 
     void Update()
     {
-        if (Input.GetKey(regenerarManaKey) && manaActual < manaMaximo && !regenerandoMana)
+        if (Input.GetKey(KeyCode.M))
         {
-            StartCoroutine(RegenerarManaProgresivo());
+            manaRechargeTimer += Time.deltaTime;
+            if (manaRechargeTimer >= manaRechargeInterval)
+            {
+                RegenerarMana(1);
+                manaRechargeTimer = 0f;
+            }
+        }
+        else
+        {
+            manaRechargeTimer = 0f;
         }
     }
 
-    public void RecibirDaño()
+    public void RecibirDaño(Vector2 direccionEmpujon)
     {
-        if (vidaActual <= 0)
-            return;
+        if (!puedeRecibirDaño) return;
 
         vidaActual--;
         ActualizarBarraVida();
 
-        if (vidaActual > 0)
+        if (soundManager != null)
+            soundManager.PlaySFX(soundManager.fail);
+
+        if (direccionEmpujon != Vector2.zero)
         {
-            if (soundManager != null)
-                soundManager.PlaySFX(soundManager.fail);
+            StartCoroutine(ApplyKnockback(direccionEmpujon));
         }
-        else
+
+        if (vidaActual <= 0)
         {
-            StartCoroutine(GameOver());
+            if (SceneManager1.Instance != null)
+                SceneManager1.Instance.MostrarGameOver();
+            else
+                Debug.LogWarning("SceneManager1 no encontrado.");
         }
+
+        StartCoroutine(InvencibilidadCooldown());
     }
 
-    public bool ConsumirMana()
+    private IEnumerator InvencibilidadCooldown()
     {
-        if (manaActual > 0)
+        puedeRecibirDaño = false;
+        yield return new WaitForSeconds(tiempoInvencibilidad);
+        puedeRecibirDaño = true;
+    }
+
+    private IEnumerator ApplyKnockback(Vector2 direccionEmpujon)
+    {
+        isStunned = true;
+
+        float knockbackDuration = 0.3f;
+        float elapsed = 0f;
+        Vector3 startPos = transform.position;
+        Vector3 targetPos = startPos + (Vector3)(direccionEmpujon.normalized * fuerzaEmpujon * 0.1f);
+
+        while (elapsed < knockbackDuration)
         {
-            manaActual--;
+            transform.position = Vector3.Lerp(startPos, targetPos, elapsed / knockbackDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPos;
+
+        isStunned = false;
+    }
+
+    public bool ConsumirMana(int cantidad)
+    {
+        if (manaActual >= cantidad)
+        {
+            manaActual -= cantidad;
             ActualizarBarraMana();
             return true;
         }
-        else
-        {
-            // No hay mana suficiente para usar
-            return false;
-        }
+        return false;
     }
 
-    private IEnumerator RegenerarManaProgresivo()
+    public void RegenerarMana(int cantidad)
     {
-        regenerandoMana = true;
-        while (manaActual < manaMaximo && Input.GetKey(regenerarManaKey))
-        {
-            manaActual++;
-            ActualizarBarraMana();
-            yield return new WaitForSeconds(velocidadRecuperacionMana);
-        }
-        regenerandoMana = false;
+        manaActual += cantidad;
+        if (manaActual > manaMaximo)
+            manaActual = manaMaximo;
+
+        ActualizarBarraMana();
     }
 
-    private void ActualizarBarraVida()
+    public float ObtenerFuerzaEmpujon()
+    {
+        return fuerzaEmpujon;
+    }
+
+    public bool EstaAturdido()
+    {
+        return isStunned;
+    }
+
+    void ActualizarBarraVida()
     {
         if (barraVida != null)
             barraVida.value = vidaActual;
     }
 
-    private void ActualizarBarraMana()
+    void ActualizarBarraMana()
     {
         if (barraMana != null)
             barraMana.value = manaActual;
-    }
-
-    private IEnumerator GameOver()
-    {
-        if (soundManager != null)
-            soundManager.PlaySFX(soundManager.gameOver);
-
-        yield return new WaitForSeconds(soundManager.gameOver.length);
-
-        CargarEscenaPortales();
-    }
-
-    private void CargarEscenaPortales()
-    {
-        if (soundManager != null)
-        {
-            soundManager.StopMusic();
-            soundManager.PlayMusic(soundManager.musicPortales);
-        }
-        SceneManager.LoadScene("Portales");
     }
 }

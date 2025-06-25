@@ -45,7 +45,7 @@ public class PlayerShooting : MonoBehaviour
     private void Shoot()
     {
         // Verifica maná suficiente
-        if (playerStats == null || !playerStats.ConsumirMana()) return;
+        if (playerStats == null || !playerStats.ConsumirMana(1)) return;
 
         GameObject currentPrefab = weaponManager.GetCurrentProjectilePrefab();
         if (currentPrefab == null || playerMovement == null) return;

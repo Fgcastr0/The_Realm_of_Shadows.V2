@@ -1,17 +1,29 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowPlayerGolem : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float range;
-    [SerializeField] private GameObject character;
 
-    private bool facingRight = true; // Ahora empieza como si mirara a la izquierda
+    private GameObject character;
+    private bool facingRight = true;
+
+    void Start()
+    {
+        // Buscar automáticamente al GameObject con tag "Player"
+        character = GameObject.FindGameObjectWithTag("Player");
+
+        if (character == null)
+        {
+            Debug.LogWarning("No se encontró ningún GameObject con el tag 'Player'. Asegurate de que el mago tenga ese tag.");
+        }
+    }
 
     void Update()
     {
+        if (character == null) return;
+
         float distance = Vector3.Distance(transform.position, character.transform.position);
 
         if (distance > range)
@@ -22,7 +34,7 @@ public class FollowPlayerGolem : MonoBehaviour
             // Determinar dirección
             Vector3 direction = character.transform.position - transform.position;
 
-            // Corregimos el flip
+            // Flip horizontal
             if (direction.x > 0 && !facingRight)
             {
                 Flip();
@@ -38,7 +50,7 @@ public class FollowPlayerGolem : MonoBehaviour
     {
         facingRight = !facingRight;
         Vector3 scale = transform.localScale;
-        scale.x *= -1; // Invierte la escala horizontalmente
+        scale.x *= -1;
         transform.localScale = scale;
     }
 }

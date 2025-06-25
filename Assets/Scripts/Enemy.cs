@@ -7,8 +7,19 @@ public class Enemy : MonoBehaviour
         // Si choca con proyectil
         if (collision.CompareTag("Projectil"))
         {
-            Destroy(collision.gameObject); // destruye proyectil
-            Destroy(gameObject); // destruye enemigo
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+
+            // Sumar punto
+            GameObject hud = GameObject.Find("HUD"); // Asegurate de nombrar tu GameObject HUD con este nombre
+            if (hud != null)
+            {
+                HUDController controlador = hud.GetComponent<HUDController>();
+                if (controlador != null)
+                {
+                    controlador.SumarPunto();
+                }
+            }
         }
 
         // Si choca con el jugador
@@ -17,7 +28,8 @@ public class Enemy : MonoBehaviour
             PlayerStats stats = collision.GetComponent<PlayerStats>();
             if (stats != null)
             {
-                stats.RecibirDaño();
+                Vector2 direccionEmpujon = (collision.transform.position - transform.position).normalized;
+                stats.RecibirDaño(direccionEmpujon);
             }
         }
     }
