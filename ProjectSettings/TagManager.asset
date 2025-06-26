@@ -18,6 +18,7 @@ TagManager:
   - ImagenVida
   - manaParticulas
   - Projectil
+  - ProjectilHIelo
   layers:
   - Default
   - TransparentFX

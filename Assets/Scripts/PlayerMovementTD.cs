@@ -10,7 +10,7 @@ public class PlayerMovementTD : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Vector2 movement;
 
-    public Vector2 LastDirection { get; private set; } = Vector2.down;
+    public Vector2 LastDirection { get; private set; } = Vector2.right;
 
     private PlayerStats playerStats;
 
@@ -44,14 +44,15 @@ public class PlayerMovementTD : MonoBehaviour
 
         animator.SetBool("isWalking", movement != Vector2.zero);
 
-        if (movement != Vector2.zero)
-            LastDirection = movement.normalized;
+        // ✅ Solo actualizamos la dirección si se mueve en X (izquierda o derecha)
+        if (movement.x != 0)
+            LastDirection = new Vector2(movement.x, 0).normalized;
 
         // Flipping horizontal del sprite
         if (movement.x > 0)
-            spriteRenderer.flipX = false; // mirando a la derecha
+            spriteRenderer.flipX = false;
         else if (movement.x < 0)
-            spriteRenderer.flipX = true;  // mirando a la izquierda
+            spriteRenderer.flipX = true;
 
         // Animación de ataque
         if (Input.GetKeyDown(KeyCode.Space))

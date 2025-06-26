@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
-    public GameObject[] puertas; // Otras puertas (opcional)
-    [SerializeField] private PuertaCalavera puertaCalavera; // Referencia a la calavera
+    public GameObject[] puertas;
+    [SerializeField] private PuertaCalavera puertaCalavera;
 
     private bool completada = false;
 
@@ -14,23 +14,26 @@ public class RoomController : MonoBehaviour
 
     void Update()
     {
-        if (!completada)
+        if (completada) return;
+
+        GameObject[] enemigos = GameObject.FindGameObjectsWithTag("Enemy");
+        int enemigosDentro = 0;
+
+        foreach (GameObject enemigo in enemigos)
         {
-            GameObject[] enemigos = GameObject.FindGameObjectsWithTag("Enemy");
-            int enemigosDentro = 0;
-
-            foreach (GameObject enemigo in enemigos)
+            if (enemigo.transform.IsChildOf(transform))
             {
-                if (enemigo.transform.IsChildOf(transform))
-                    enemigosDentro++;
+                enemigosDentro++;
             }
+        }
 
-            if (enemigosDentro == 0)
-            {
-                AbrirPuertas();
-                completada = true;
-                Debug.Log(gameObject.name + " completada");
-            }
+        Debug.Log($"{gameObject.name} tiene {enemigosDentro} enemigos dentro");
+
+        if (enemigosDentro == 0)
+        {
+            AbrirPuertas();
+            completada = true;
+            Debug.Log($"{gameObject.name} COMPLETADA");
         }
     }
 
@@ -48,15 +51,25 @@ public class RoomController : MonoBehaviour
 
     private void AbrirPuertas()
     {
+        Debug.Log("Llamando a AbrirPuerta() de la calavera");
+
         foreach (GameObject puerta in puertas)
         {
             if (puerta != null)
-                puerta.SetActive(false);
+            {
+                // ✅ En lugar de desactivarla, desactivamos su collider
+                Collider2D col = puerta.GetComponent<Collider2D>();
+                if (col != null) col.enabled = false;
+            }
         }
 
         if (puertaCalavera != null)
         {
-            puertaCalavera.AbrirPuerta(); // Activa la calavera
+            puertaCalavera.AbrirPuerta();
+        }
+        else
+        {
+            Debug.LogWarning("puertaCalavera no asignada en " + gameObject.name);
         }
     }
 
@@ -65,12 +78,16 @@ public class RoomController : MonoBehaviour
         foreach (GameObject puerta in puertas)
         {
             if (puerta != null)
-                puerta.SetActive(true);
+            {
+                // ✅ Volvemos a activar el collider
+                Collider2D col = puerta.GetComponent<Collider2D>();
+                if (col != null) col.enabled = true;
+            }
         }
 
         if (puertaCalavera != null)
         {
-            puertaCalavera.CerrarPuerta(); // Desactiva la calavera
+            puertaCalavera.CerrarPuerta();
         }
     }
 

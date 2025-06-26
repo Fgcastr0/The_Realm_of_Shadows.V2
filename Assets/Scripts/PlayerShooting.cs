@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -11,21 +12,24 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private KeyCode shootKey = KeyCode.Space;
     [SerializeField] private KeyCode changeWeaponKey = KeyCode.L;
     [SerializeField] private float shootCooldown = 0.2f;
+    [SerializeField] private float shootingDelay = 0.3f; // ⏱️ Tiempo desde que arranca la animación hasta que dispara
 
     private PlayerMovementTD playerMovement;
+    private Animator animator;
     private float lastShotTime;
 
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovementTD>();
+        animator = GetComponent<Animator>();
         soundManager = GameObject.FindGameObjectWithTag("Sound").GetComponent<SoundManager>();
         weaponManager = GameObject.FindGameObjectWithTag("WeaponManager").GetComponent<WeaponManager>();
         playerStats = GetComponent<PlayerStats>();
 
         if (playerMovement == null)
-        {
             Debug.LogError("PlayerMovement no encontrado.");
-        }
+        if (animator == null)
+            Debug.LogError("Animator no encontrado.");
     }
 
     private void Update()
@@ -37,25 +41,36 @@ public class PlayerShooting : MonoBehaviour
 
         if (Input.GetKeyDown(shootKey) && Time.time >= lastShotTime + shootCooldown)
         {
-            Shoot();
+            StartCoroutine(DisparoConDelay(shootingDelay));
             lastShotTime = Time.time;
         }
     }
 
-    private void Shoot()
+    private IEnumerator DisparoConDelay(float delay)
     {
-        // Verifica maná suficiente
-        if (playerStats == null || !playerStats.ConsumirMana(1)) return;
+        // Verifica maná antes de disparar
+        if (playerStats == null || !playerStats.ConsumirMana(1)) yield break;
 
+        // Reproducir animación de ataque
+        animator.SetTrigger("Attack");
+
+        // Esperar el delay para sincronizar con la animación
+        yield return new WaitForSeconds(delay);
+
+        // Disparar el proyectil
+        Disparar();
+    }
+
+    private void Disparar()
+    {
         GameObject currentPrefab = weaponManager.GetCurrentProjectilePrefab();
         if (currentPrefab == null || playerMovement == null) return;
 
         Vector2 shootDirection = playerMovement.LastDirection.normalized;
         Vector3 spawnPosition = transform.position + (Vector3)(shootDirection * 0.5f);
 
-        weaponManager.ShotSound();  // Reproduce sonido del arma actual
+        weaponManager.ShotSound();
 
-        // Calcula rotación para mirar en dirección del disparo
         float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
