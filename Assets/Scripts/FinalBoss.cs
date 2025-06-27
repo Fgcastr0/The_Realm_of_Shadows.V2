@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class FinalBoss : MonoBehaviour
 {
     public float idleTime = 7f;
@@ -8,6 +9,7 @@ public class FinalBoss : MonoBehaviour
     public int maxHits = 3;
 
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
     private Transform player;
     private int hitCount = 0;
     private float idleTimer = 0f;
@@ -16,12 +18,16 @@ public class FinalBoss : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
         if (player == null)
         {
             Debug.LogError("No se encontró el GameObject con la tag 'Player'");
         }
+
+        // 🟢 Arranca mirando a la izquierda (flipped)
+        spriteRenderer.flipX = false;
 
         animator.Play("BossHieloIdel");
     }
@@ -43,21 +49,20 @@ public class FinalBoss : MonoBehaviour
             Vector2 direction = (player.position - transform.position).normalized;
             transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
 
-            // Girar sprite según dirección horizontal
+            // 🟡 Flip visual usando SpriteRenderer (no escala)
             if (direction.x > 0.01f)
             {
-                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                spriteRenderer.flipX = true; // Mira a la derecha
             }
             else if (direction.x < -0.01f)
             {
-                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                spriteRenderer.flipX = false; // Mira a la izquierda
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Recibir daño solo si ya está en modo persecución
         if (collision.name.Contains("ProjectilHielo") && isChasing)
         {
             hitCount++;
@@ -70,7 +75,6 @@ public class FinalBoss : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        // Hacer daño al jugador (sin cooldown)
         if (collision.CompareTag("Player"))
         {
             PlayerStats stats = collision.GetComponent<PlayerStats>();
