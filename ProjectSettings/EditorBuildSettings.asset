@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuPrincipal.unity
     guid: 4e02f5f099f745f4aa3d90ab2316ed45
   - enabled: 1
+    path: Assets/Scenes/Controles.unity
+    guid: 0fc2084e952c36b41bde3153442e62ca
+  - enabled: 1
     path: Assets/Scenes/MenuInicio.unity
     guid: 92b7dd443439ae44986ac7afee4a60cc
   - enabled: 1
@@ -44,4 +47,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CargaHielo.unity
     guid: 982859c402cd7584e84bff1014af2390
+  - enabled: 1
+    path: Assets/Scenes/CargaFinal.unity
+    guid: b92be3f8893c1de43bc4583a2de8c413
+  - enabled: 1
+    path: Assets/Scenes/TorreFinal.unity
+    guid: 23c8c525badabc347bec5cced3125a61
+  - enabled: 1
+    path: Assets/Scenes/GameOverFinal.unity
+    guid: 29b85f18cc0619e44a13bfd2f5bded73
   m_configObjects: {}

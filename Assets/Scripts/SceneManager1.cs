@@ -8,6 +8,7 @@ public class SceneManager1 : MonoBehaviour
 
     public string escenaGameOverFuego = "GameOverFuego";
     public string escenaGameOverHielo = "GameOverHielo";
+       public string escenaGameOverFinal = "GameOverFinal";
     public string escenaGameOverOscuridad = "GameOverOscuridad";
     public string escenaMenuPrincipal = "MenuPrincipal";
 
@@ -35,6 +36,8 @@ public class SceneManager1 : MonoBehaviour
             escenaGameOver = escenaGameOverHielo;
         else if (escenaActual == "TorreOscuridad")
             escenaGameOver = escenaGameOverOscuridad;
+            else if (escenaActual == "TorreFinal")
+            escenaGameOver = escenaGameOverFinal;
         else
         {
             Debug.LogWarning("Escena no reconocida para Game Over: " + escenaActual);

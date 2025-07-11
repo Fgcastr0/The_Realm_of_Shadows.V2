@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     // Este método se llama al presionar el botón "Options"
     public void OpenOptions()
     {
-        SceneManager.LoadScene("MenuOpciones");
+        SceneManager.LoadScene("Controles");
     }
 
     // Este método se llama al presionar el botón "Exit"
